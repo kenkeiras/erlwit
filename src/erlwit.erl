@@ -12,7 +12,7 @@ parse(Message, Token) ->
     ssl:start(),
 
     case httpc:request(get,
-                 {"https://api.wit.ai/message?q=" ++ Message,
+                 {"https://api.wit.ai/message?q=" ++ edoc_lib:escape_uri(Message),
                  [{"Authorization", "Bearer " ++ Token},
                   {"Accept", "application/vnd.wit.20141022+json"}]},
                        [], []) of
